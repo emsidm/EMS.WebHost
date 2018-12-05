@@ -10,6 +10,9 @@ environment:
   PATH: $(PATH);$(PROGRAMFILES)\dotnet\
 before_build:
 - cmd: dotnet --version
+nuget:
+  account_feed: true
+  project_feed: true
 build_script:
 - appveyor-retry dotnet restore -v Minimal
 - dotnet -d build -c %CONFIGURATION%
