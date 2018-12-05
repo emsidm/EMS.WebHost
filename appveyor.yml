@@ -8,13 +8,13 @@ init:
 - ps: $Env:LABEL = $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
 environment:
   PATH: $(PATH);$(PROGRAMFILES)\dotnet\
-before_build:
-- cmd: dotnet --version
 nuget:
   account_feed: true
   project_feed: true
-build_script:
+before_build:
+- cmd: dotnet --version
 - appveyor-retry dotnet restore -v Minimal
+build_script:
 - dotnet -d build -c %CONFIGURATION%
 test: off
 cache:
