@@ -10,7 +10,7 @@ environment:
   PATH: $(PATH);$(PROGRAMFILES)\dotnet\
 before_build:
 - cmd: dotnet --version
-- nuget sources add -name AppVeyor -source https://ci.appveyor.com/nuget/ems-shared-ddrf9y0xta28
+- nuget sources add -name Shared -source https://ci.appveyor.com/nuget/ems-shared-ddrf9y0xta28
 - appveyor-retry dotnet restore -v Minimal
 build_script:
 - dotnet -d build -c %CONFIGURATION%
