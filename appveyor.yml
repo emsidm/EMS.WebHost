@@ -8,11 +8,9 @@ init:
 - ps: $Env:LABEL = $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
 environment:
   PATH: $(PATH);$(PROGRAMFILES)\dotnet\
-nuget:
-  account_feed: true
-  project_feed: true
 before_build:
 - cmd: dotnet --version
+- nuget sources add -name AppVeyor -source https://ci.appveyor.com/nuget/aastefanov-mfr9dpeed3gt
 - appveyor-retry dotnet restore -v Minimal
 build_script:
 - dotnet -d build -c %CONFIGURATION%
